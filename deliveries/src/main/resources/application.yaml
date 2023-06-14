@@ -1,10 +1,2 @@
 server:
   port : 8081
-  tomcat:
-    accesslog:
-      enabled: true
-      directory: /dev
-      prefix: stdout
-      buffered: false
-      file-date-format: ""
-      suffix:

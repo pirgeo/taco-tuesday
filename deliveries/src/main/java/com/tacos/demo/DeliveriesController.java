@@ -1,7 +1,8 @@
 package com.tacos.demo;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.concurrent.ThreadLocalRandom;
-
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class DeliveriesController {
 
+    private static final Logger log = LogManager.getLogger(DeliveriesController.class);
+
     @GetMapping("/deliveries")
-    public Boolean getDeliveries() {
+
+    public Boolean deliveries(HttpRequest request) {
+        log.info("Received HTTP GET request. Path: {}, Remote Address: {}", request.getURI().getPath());
         if(ThreadLocalRandom.current().nextDouble() < 0.8)
         {return true;}
         else
