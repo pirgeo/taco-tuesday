@@ -1,1 +1,11 @@
 logging.level.io.micrometer.dynatrace: error
+server:
+  port : 8080
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: /dev
+      prefix: stdout
+      buffered: false
+      file-date-format: ""
+      suffix:
