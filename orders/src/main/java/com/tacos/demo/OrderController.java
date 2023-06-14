@@ -1,6 +1,5 @@
 package com.tacos.demo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,12 +14,9 @@ import io.micrometer.core.instrument.Metrics;
 
 public class OrderController {
 
-    private static final Logger log = LogManager.getLogger(OrderController.class);
-
-
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(OrderController.class);
     @GetMapping("/orders")
-
-    public String orders(HttpRequest request) throws IOException {
+    public String getOrders(HttpRequest request) throws IOException {
         log.info("Received HTTP GET request. Path: {}, Remote Address: {}", request.getURI().getPath());
         Counter orders = Metrics.counter("orders");
         Counter successfulDeliveries = Metrics.counter("deliveries","success","true");

@@ -1,6 +1,5 @@
 package com.tacos.demo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class DeliveriesController {
 
-    private static final Logger log = LogManager.getLogger(DeliveriesController.class);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(DeliveriesController.class);
 
     @GetMapping("/deliveries")
 
