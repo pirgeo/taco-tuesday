@@ -21,7 +21,7 @@ public class OrderController {
 
     @RequestMapping("/{tacos}")
 
-    public String handleGetRequest(HttpServletRequest request, @PathVariable String tacos, @RequestParam("tacos") String parameter) throws IOException {
+    public String handleGetRequest(HttpServletRequest request, @PathVariable String tacos) throws IOException {
         Counter orders = Metrics.counter("orders");
         log.info("Received HTTP GET request. Path: {}, Remote Address: {}", request.getRequestURL(), request.getRemoteAddr());
         int tacosInt = (tacos != null) ? Integer.parseInt(tacos) : 1;
