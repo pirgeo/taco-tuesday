@@ -24,6 +24,12 @@ orders/build/jib-cache/
 hs_err_pid*
 replay_pid*
 
+/bin/
+/deliveries/bin/
+/deliveries/out/
+/orders/out/
+/orders/bin/
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
