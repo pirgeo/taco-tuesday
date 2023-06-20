@@ -3,6 +3,7 @@ package com.tacos.demo;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Metrics;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 
 public class OrderController {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(OrderController.class);
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
     @RequestMapping("/orderTacos/{numTacos}")
     public String handleGetRequest(HttpServletRequest request, @PathVariable String numTacos) throws IOException {
