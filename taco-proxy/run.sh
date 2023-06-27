@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -f "docker.env" ]]; then
+if [ ! -f "docker.env" ]; then
   echo "need to prepare env file 'docker.env'. Copy docker.template.env to docker.env and fill in the values:"
   echo "\tcp docker.template.env docker.env"
   exit 1

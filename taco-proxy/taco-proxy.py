@@ -40,10 +40,12 @@ RequestsInstrumentor().instrument()
 trace.set_tracer_provider(tracer_provider)
 tracer = trace.get_tracer(__name__)
 
+order_endpoint_base = os.environ["ORDERS_ENDPOINT_BASE"]
+
 def do_constantly():
     with tracer.start_as_current_span("orders"):
         tacos = random.randrange(1, 6)
-        resp = requests.get(url="http://orders-internal:8080/orderTacos/" + str(tacos))
+        resp = requests.get(url=order_endpoint_base + "/orderTacos/" + str(tacos))
         logging.info(resp.status_code)
 
 schedule.every(7).seconds.do(do_constantly)
