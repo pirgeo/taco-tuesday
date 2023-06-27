@@ -91,3 +91,6 @@ gradle-app.setting
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
+
+!opentelemetry-javaagent.jar
+/otel-sdk-configuration.properties
