@@ -28,11 +28,13 @@ merged.update({
 })
 
 resource = Resource.create(merged)
-token_string = "Api-Token " + os.environ['dt_token']
+token_string = "Api-Token " + os.environ['DT_OTLP_TRACE_INGEST_TOKEN']
 format = "%(asctime)s %(levelname)s [%(name)s] [%(filename)s:%(lineno)d] [trace_id=%(otelTraceID)s span_id=%(otelSpanID)s resource.service.name=%(otelServiceName)s] - %(message)s"
 LoggingInstrumentor().instrument(set_logging_format=format)
 tracer_provider = TracerProvider(resource=resource)
-span_processor = BatchSpanProcessor(OTLPSpanExporter(endpoint=os.environ["dt_endpoint"],headers={ "Authorization": token_string}))
+trace_endpoint = endpoint=os.environ["DT_OTLP_TRACE_INGEST_ENDPOINT"]
+print("exporting to endpoint " + trace_endpoint)
+span_processor = BatchSpanProcessor(OTLPSpanExporter(trace_endpoint, headers={ "Authorization": token_string}))
 tracer_provider.add_span_processor(span_processor)
 RequestsInstrumentor().instrument()
 trace.set_tracer_provider(tracer_provider)
