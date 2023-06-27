@@ -1,2 +1,13 @@
 server:
   port : 8080
+
+logging:
+  level:
+    io.micrometer.dynatrace: DEBUG
+
+management:
+  dynatrace:
+    metrics:
+      export:
+        uri: http://localhost:14499
+#        api-token: "my-token"
