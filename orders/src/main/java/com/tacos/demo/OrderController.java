@@ -15,8 +15,14 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 @RestController
-
 public class OrderController {
+    private final String deliveriesUrl;
+
+    public OrderController() {
+        String readDeliveriesUrl = System.getenv("DELIVERIES_URL");
+        deliveriesUrl = readDeliveriesUrl == null ? "http://localhost:8081" : readDeliveriesUrl;
+        log.info("deliveries endpoint: " + deliveriesUrl);
+    }
 
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
@@ -39,7 +45,7 @@ public class OrderController {
     public String getOrders(int tacos) throws IOException {
         Counter successfulDeliveries = Metrics.counter("deliveries", "success", "true");
         Counter unsuccessfulDeliveries = Metrics.counter("deliveries", "success", "false");
-        URL url = new URL("http://deliveries:8081/");
+        URL url = new URL(deliveriesUrl);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         String response = new String(con.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
